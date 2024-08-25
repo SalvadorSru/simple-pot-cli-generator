@@ -7,7 +7,13 @@ import (
 )
 
 func ParsePath(path string) string {
-	return strings.ReplaceAll(path, "\\", "/")
+	parsed := strings.ReplaceAll(path, "\\", "/")
+
+	if parsed[len(parsed)-1] != '/' {
+		parsed += "/"
+	}
+
+	return parsed
 }
 
 func CreateFolders(path string) error {
