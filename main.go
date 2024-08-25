@@ -86,7 +86,7 @@ func main() {
 
 			content := string(file)
 
-			for line, action := range action.AilableActions {
+			for line, action := range action.AvailableActions {
 				pattern := fmt.Sprintf("%s\\(.+\\)", action.Name)
 
 				contentMatches := regexp.MustCompile(pattern)

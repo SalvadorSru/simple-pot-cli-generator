@@ -23,7 +23,7 @@ func New(name string, plural int, context int) Type {
 	}
 }
 
-var AilableActions = []Type{
+var AvailableActions = []Type{
 	New("__", -1, -1),
 	New("_e", -1, -1),
 	New("_ex", -1, 1),
