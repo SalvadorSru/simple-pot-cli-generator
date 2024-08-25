@@ -12,12 +12,12 @@ import (
 	"salvadorsru/po-generator/internal/pot"
 	"salvadorsru/po-generator/internal/utils"
 	"sync"
-	"time"
 )
 
 func main() {
 	inputPath := flag.String("i", ".", "Path to the folder to scan (default is current directory)")
 	outputFile := flag.String("o", "to-translate.pot", "Name of the output POT file")
+	pattern := flag.String("p", "php", "File extension  (default is php). Use '/' to separate multiple extensions (e.g., 'php/js/html').")
 
 	flag.StringVar(inputPath, "input", ".", "Path to the folder to scan (default is current directory)")
 	flag.StringVar(outputFile, "output", "to-translate.pot", "Name of the output POT file")
@@ -76,36 +76,36 @@ func main() {
 		go func(path string) {
 			defer wg.Done()
 
-			file, fileError := os.ReadFile(path)
-			if fileError != nil {
-				errorsChannel <- fmt.Errorf("error reading file %s: %v", path, fileError)
-				return
-			}
-
-			time.Sleep(time.Millisecond * 100)
-
-			content := string(file)
-
-			for line, action := range action.AvailableActions {
-				pattern := fmt.Sprintf("%s\\(.+\\)", action.Name)
-
-				contentMatches := regexp.MustCompile(pattern)
-
-				matches := contentMatches.FindAllString(content, -1)
-
-				for _, match := range matches {
-					sentence := string(match)
-
-					entry := pot.ParseEntryFromString(
-						pot.Reference{Base: path, Line: line},
-						sentence,
-						action.Parameters,
-					)
-
-					entriesChannel <- entry
+			if utils.ValidatePathExtension(path, *pattern) {
+				file, fileError := os.ReadFile(path)
+				if fileError != nil {
+					errorsChannel <- fmt.Errorf("error reading file %s: %v", path, fileError)
+					return
 				}
-			}
 
+				content := string(file)
+
+				for line, action := range action.AvailableActions {
+					pattern := fmt.Sprintf("%s\\(.+\\)", action.Name)
+
+					contentMatches := regexp.MustCompile(pattern)
+
+					matches := contentMatches.FindAllString(content, -1)
+
+					for _, match := range matches {
+						sentence := string(match)
+
+						entry := pot.ParseEntryFromString(
+							pot.Reference{Base: path, Line: line},
+							sentence,
+							action.Parameters,
+						)
+
+						entriesChannel <- entry
+					}
+				}
+
+			}
 			progressBar.Print(1)
 		}(path)
 
