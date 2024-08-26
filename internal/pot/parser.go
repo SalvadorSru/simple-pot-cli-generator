@@ -44,7 +44,7 @@ func ParseEntryFromString(entryReference Reference, sentence string, parameters 
 			}
 		}
 
-		if !inString && letter == '$' {
+		if !inString && unicode.IsPrint(letter) {
 			inVariable = true
 		}
 
