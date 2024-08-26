@@ -17,7 +17,7 @@ import (
 func main() {
 	inputPath := flag.String("i", ".", "Path to the folder to scan (default is current directory)")
 	outputFile := flag.String("o", "to-translate.pot", "Name of the output POT file")
-	pattern := flag.String("p", "php", "File extension  (default is php). Use '/' to separate multiple extensions (e.g., 'php/js/html').")
+	pattern := flag.String("p", "php/js", "File extension  (default is php). Use '/' to separate multiple extensions (e.g., 'php/js/html').")
 
 	flag.StringVar(inputPath, "input", ".", "Path to the folder to scan (default is current directory)")
 	flag.StringVar(outputFile, "output", "to-translate.pot", "Name of the output POT file")
