@@ -23,10 +23,10 @@ Once compiled, you can run the script using the following syntax:
 
 Where:
 
-*   `-i` or `--input`: Path to the directory to scan. If not specified, the current directory will be used.
-*   `-o` or `--output`: Name of the output POT file. The default is `to-translate.pot`.
-*   `-p` or `--pattern`: File extensions to search for, separated by slashes. The default value is `php/js`.
-*   `-h` or `--help`: Displays the script help.
+*   `-i`: Path to the directory to scan. If not specified, the current directory will be used.
+*   `-o`: Name of the output POT file. The default is `to-translate.pot`.
+*   `-p`: File extensions to search for, separated by slashes. The default value is `php/js`.
+*   `-h`: Displays the script help.
 
 ### Example Usage
 
