@@ -1,185 +1,45 @@
-PO Generator
-============
+Simple Pot Generator CLI
+==================
 
-Version: 1.0.0
+This Go script scans a specified directory for files with specific extensions and generates a POT file with the strings found in those files.
 
-Description
+Compilation
 -----------
 
-This tool scans a specified folder for files containing specific translation functions and generates a Portable Object Template (POT) file.
+### On Linux and macOS
+
+    go build -o <executable-name>
+
+### On Windows
+
+    go build -o <executable-name>.exe
 
 Usage
 -----
 
-The program can be run with the following command-line arguments:
+Once compiled, you can run the script using the following syntax:
 
-        -i, --input <path>     Path to the folder to scan (default is current directory)
-        -o, --output <file>    Name of the output POT file (default is 'to-translate.pot')
-        -h, --help             Display help information
-    
+    ./<executable-name> -i /example/path -o output-file.pot -p extensions
 
-Examples
---------
+Where:
 
-Run the program with a specific input directory and output file:
+*   `-i` or `--input`: Path to the directory to scan. If not specified, the current directory will be used.
+*   `-o` or `--output`: Name of the output POT file. The default is `to-translate.pot`.
+*   `-p` or `--pattern`: File extensions to search for, separated by slashes. The default value is `php/js`.
+*   `-h` or `--help`: Displays the script help.
 
-        ./po-generator -i ./src -o output.pot
-    
+### Example Usage
 
-Run the program with default settings:
+To scan a directory named `src` and generate a POT file with strings from files with `php` and `js` extensions:
 
-        ./po-generator
-    
+    ./<executable-name> -i /project-path -o translation.pot
 
-Requirements
-------------
+Contributions
+-------------
 
-Go programming language (version 1.16 or higher) must be installed.
-
-Installation
-------------
-
-Clone the repository and navigate into the project directory:
-
-        git clone https://github.com/salvadorsru/po-generator.git
-        cd po-generator
-    
-
-Tutorial: Making the Program Executable
----------------------------------------
-
-### For Linux and macOS
-
-1\. Open a terminal.
-
-2\. Navigate to the directory where the \`po-generator\` code is located.
-
-3\. Run the following command to build the program:
-
-        go build -o po-generator
-    
-
-4\. Make the program executable by running:
-
-        chmod +x po-generator
-    
-
-5\. You can now run the program with:
-
-        ./po-generator
-    
-
-### For Windows
-
-1\. Open Command Prompt or PowerShell.
-
-2\. Navigate to the directory where the \`po-generator\` code is located.
-
-3\. Build the program by running:
-
-        go build -o po-generator.exe
-    
-
-4\. You can now run the program with:
-
-        po-generator.exe
-    
+Contributions are welcome. Please fork the repository and submit a pull request with your changes.
 
 License
 -------
 
 This project is licensed under the MIT License.
-
-* * *
-
-Generador de PO
-===============
-
-Versión: 1.0.0
-
-Descripción
------------
-
-Esta herramienta escanea una carpeta especificada en busca de archivos que contienen funciones de traducción específicas y genera un archivo de plantilla de objeto portátil (POT).
-
-Uso
----
-
-El programa se puede ejecutar con los siguientes argumentos de línea de comandos:
-
-        -i, --input <path>     Ruta a la carpeta a escanear (el valor predeterminado es el directorio actual)
-        -o, --output <file>    Nombre del archivo POT de salida (el valor predeterminado es 'to-translate.pot')
-        -h, --help             Mostrar información de ayuda
-    
-
-Ejemplos
---------
-
-Ejecuta el programa con un directorio de entrada y un archivo de salida específicos:
-
-        ./po-generator -i ./src -o output.pot
-    
-
-Ejecuta el programa con la configuración predeterminada:
-
-        ./po-generator
-    
-
-Requisitos
-----------
-
-Se debe instalar el lenguaje de programación Go (versión 1.16 o superior).
-
-Instalación
------------
-
-Clona el repositorio y navega al directorio del proyecto:
-
-        git clone https://github.com/salvadorsru/po-generator.git
-        cd po-generator
-    
-
-Tutorial: Haciendo el Programa Ejecutable
------------------------------------------
-
-### Para Linux y macOS
-
-1\. Abre una terminal.
-
-2\. Navega al directorio donde se encuentra el código de \`po-generator\`.
-
-3\. Ejecuta el siguiente comando para construir el programa:
-
-        go build -o po-generator
-    
-
-4\. Haz el programa ejecutable ejecutando:
-
-        chmod +x po-generator
-    
-
-5\. Ahora puedes ejecutar el programa con:
-
-        ./po-generator
-    
-
-### Para Windows
-
-1\. Abre Command Prompt o PowerShell.
-
-2\. Navega al directorio donde se encuentra el código de \`po-generator\`.
-
-3\. Construye el programa ejecutando:
-
-        go build -o po-generator.exe
-    
-
-4\. Ahora puedes ejecutar el programa con:
-
-        po-generator.exe
-    
-
-Licencia
---------
-
-Este proyecto está bajo la Licencia MIT.
